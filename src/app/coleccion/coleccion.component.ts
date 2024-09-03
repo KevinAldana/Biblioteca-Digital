@@ -48,7 +48,6 @@ export class ColeccionComponent {
   }
   onUpdate() {
     const updatedItem = { id: this.currentItem.id, ...this.coleccionForm.value};
-    console.log(updatedItem)
     this.http.put('http://localhost/biblioteca_digital/backend/Controlador/controlador.php?action=updateColeccion', updatedItem)
       .subscribe((response: any) => {
         if (response === 1) {
@@ -77,7 +76,6 @@ export class ColeccionComponent {
     if (this.coleccionForm.valid) {
       this.http.post('http://localhost/biblioteca_digital/backend/Controlador/controlador.php?action=agregarColeccion', this.coleccionForm.value)
         .subscribe((response: any) => {
-          console.log(response);
           if (response === 1) {
             this.loadColeccion();
             this.coleccionForm.reset();

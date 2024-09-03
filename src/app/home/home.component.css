@@ -10,17 +10,6 @@
     padding: 10px 20px;
     text-align: center;
   }
-  
-  nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 10px;
-  }
-  
-  nav a:hover {
-    text-decoration: underline;
-  }
-  
   .about-us {
     padding: 20px;
   }
@@ -33,23 +22,5 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-  }
-  .user-info {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
-  
-  .user-info span {
-    margin-right: 15px;
-  }
-  
-  .user-info button {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
+  }  
   

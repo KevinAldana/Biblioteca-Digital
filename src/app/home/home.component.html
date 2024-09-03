@@ -1,18 +1,6 @@
 <div class="home-container">
   <header>
-    <h1>Bienvenido a la Biblioteca Digital</h1>
-    <nav>
-    <a (click)="goToHome()">Inicio</a>
-    <a *ngIf="isAdmin" (click)="goToUserManagement()">Administración de Usuarios</a>
-    <a *ngIf="isAdmin" (click)="goToCollectionManagement()">Gestión de Colección</a>
-    <a *ngIf="!isAdmin"(click)="goToMyLoans()">Mis Préstamos</a>
-    <a *ngIf="!isAdmin"(click)="goToUserProfile()">Perfil de Usuario</a>
-    <a *ngIf="!isAdmin"(click)="goToSocialInteraction()">Interacción Social</a>
-    </nav>
-    <div class="user-info">
-      <span>{{ username }}</span>
-      <button (click)="logout()">Cerrar Sesión</button>
-    </div>
+    <app-nav-bar></app-nav-bar>
   </header>
   
   <section class="about-us">

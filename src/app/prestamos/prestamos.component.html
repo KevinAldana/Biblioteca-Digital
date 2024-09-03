@@ -1,1 +1,49 @@
-<p>prestamos works!</p>
+<app-nav-bar></app-nav-bar>
+<div class="container mt-4">
+  <h2>Gestión de Préstamos</h2>
+
+  <!-- Sección de Colecciones Disponibles -->
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Colecciones Disponibles</h3>
+      <div *ngFor="let recurso of recursos" class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ recurso.titulo }}</h5>
+          <p class="card-text"><strong>Autor:</strong> {{ recurso.autor }}</p>
+          <p class="card-text"><strong>Género:</strong> {{ recurso.genero }}</p>
+          <p class="card-text"><strong>Disponibilidad:</strong> {{ recurso.disponibilidad ? 'Disponible' : 'No Disponible' }}</p>
+          <button class="btn btn-primary" (click)="selectResource(recurso)" [disabled]="!recurso.disponibilidad">Solicitar Préstamo</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulario de Solicitud de Préstamo -->
+    <div class="col-md-6" *ngIf="selectedResource">
+      <h3>Solicitar Préstamo</h3>
+      <form (ngSubmit)="requestPrestamo()" #loanForm="ngForm">
+        <div class="mb-3">
+          <label for="requestDate" class="form-label">Fecha de Solicitud</label>
+          <input type="date" id="requestDate" class="form-control" [(ngModel)]="fechaPrestamo" name="requestDate" required>
+        </div>
+        <div class="mb-3">
+          <label for="resourceId" class="form-label">ID del Recurso</label>
+          <input type="text" id="resourceId" class="form-control" [value]="selectedResource.id" name="resourceId" readonly>
+        </div>
+        <button type="submit" class="btn btn-success">Solicitar Préstamo</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Historial de Préstamos -->
+  <div class="mt-5">
+    <h3>Historial de Préstamos</h3>
+    <div *ngFor="let prestamo of Prestamos" class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Recurso: {{ prestamo.titulo }}</h5>
+        <p class="card-text"><strong>Fecha de Solicitud:</strong> {{ prestamo.fecha_prestamo }}</p>
+        <p class="card-text"><strong>Fecha de Devolución:</strong> {{ prestamo.fecha_devolucion || 'Pendiente' }}</p>
+        <button class="btn btn-danger" (click)="returnResource(prestamo)" [disabled]="prestamo.fechaDevolucion">Devolver Recurso</button>
+      </div>
+    </div>
+  </div>
+</div>

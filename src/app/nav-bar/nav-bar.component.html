@@ -9,5 +9,9 @@
       <a *ngIf="!isAdmin" (click)="goToUserProfile()">Perfil de Usuario</a>
       <a *ngIf="!isAdmin" (click)="goToSocialInteraction()">Interacción Social</a>
       </nav>
+      <div class="user-info">
+        <span>{{ username }}</span>
+        <button (click)="logout()">Cerrar Sesión</button>
+      </div>
     </header>
   

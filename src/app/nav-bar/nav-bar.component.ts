@@ -11,6 +11,7 @@ import { NgIf } from '@angular/common';
 })
 export class NavBarComponent implements OnInit {
   isAdmin = false;
+  username: string | null = '';
   goToHome() {
     this.router.navigate(['/home']);
   }
@@ -37,8 +38,18 @@ export class NavBarComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    const rol = this.authService.getRol();
-    this.isAdmin = rol === 'administrador'; // Asume que el rol del administrador es 'administrador'
+    const token = this.authService.isAuthenticated();
+    if (!token) {
+      this.router.navigate(['/login']); // Redirige a login si no hay token
+    }
+    const rol     = this.authService.getRol();
+    this.isAdmin  = rol === 'administrador'; // Asume que el rol del administrador es 'admin'
+    this.username = this.authService.getUsername();
+  }
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    this.router.navigate(['/login']);
   }
 }
 

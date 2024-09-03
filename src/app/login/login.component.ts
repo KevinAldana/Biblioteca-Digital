@@ -40,7 +40,7 @@ export class LoginComponent {
       this.http.post<any>('http://localhost/biblioteca_digital/backend/Controlador/controlador.php?action=login', this.loginForm.value)
         .subscribe(response => {
           if (response && response.token) {
-            this.authService.login(response.token, response.rol, response.username);
+            this.authService.login(response.token, response.rol, response.username, response.id);
             this.router.navigate(['/home']);
           } else {
             console.error('Token no recibido');
