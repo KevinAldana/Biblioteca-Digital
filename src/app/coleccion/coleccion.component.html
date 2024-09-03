@@ -1,0 +1,108 @@
+<app-nav-bar></app-nav-bar>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Gestión de Colección</h2>
+    <form [formGroup]="coleccionForm" (ngSubmit)="onSave()">
+      <div class="mb-3">
+        <label for="titulo" class="form-label">Título:</label>
+        <input id="titulo" formControlName="titulo" class="form-control" />
+      </div>
+    
+      <div class="mb-3">
+        <label for="autor" class="form-label">Autor:</label>
+        <input id="autor" formControlName="autor" class="form-control" />
+      </div>
+    
+      <div class="mb-3">
+        <label for="genero" class="form-label">Género:</label>
+        <input id="genero" formControlName="genero" class="form-control" />
+      </div>
+    
+      <div class="mb-3">
+        <label for="anio_publicacion" class="form-label">Año de Publicación:</label>
+        <input id="anio_publicacion" formControlName="anio_publicacion" class="form-control" />
+      </div>
+    
+      <div class="mb-3">
+        <label for="isbn" class="form-label">ISBN:</label>
+        <input id="isbn" formControlName="isbn" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="tipo" class="form-label">Tipo:</label>
+        <input id="tipo" formControlName="tipo" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="disponibilidad" type="number" class="form-label">Disponibilidad:</label>
+        <input id="disponibilidad" type="number" formControlName="disponibilidad" class="form-control" />
+      </div>
+    
+      <button type="submit" class="btn btn-primary w-100">Guardar</button>
+    </form>
+  </div>
+
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Libros</h2>
+    
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Autor</th>
+          <th>Género</th>
+          <th>Año de Publicación</th>
+          <th>ISBN</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of coleccion">
+          <td>{{ item.titulo }}</td>
+          <td>{{ item.autor }}</td>
+          <td>{{ item.genero }}</td>
+          <td>{{ item.anio_publicacion}}</td>
+          <td>{{ item.isbn }}</td>
+          <td>
+            <button class="btn btn-warning btn-sm" (click)="edit(item)">Editar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <!-- Modal para editar -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editModalLabel">Editar Colección</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="coleccionForm" (ngSubmit)="onUpdate()">
+              <div class="mb-3">
+                <label for="titulo" class="form-label">Título:</label>
+                <input id="titulo" formControlName="titulo" class="form-control" />
+              </div>
+              <div class="mb-3">
+                <label for="autor" class="form-label">Autor:</label>
+                <input id="autor" formControlName="autor" class="form-control" />
+              </div>
+              <div class="mb-3">
+                <label for="genero" class="form-label">Género:</label>
+                <input id="genero" formControlName="genero" class="form-control" />
+              </div>
+              <div class="mb-3">
+                <label for="anio_publicacion" class="form-label">Año de Publicación:</label>
+                <input id="anio_publicacion" formControlName="anio_publicacion" class="form-control" />
+              </div>
+              <div class="mb-3">
+                <label for="isbn" class="form-label">ISBN:</label>
+                <input id="isbn" formControlName="isbn" class="form-control" />
+              </div>
+              <button type="submit" class="btn btn-primary">Actualizar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
