@@ -11,6 +11,7 @@ import { AuthGuard } from './auth.guard';
 import { ColeccionComponent } from './coleccion/coleccion.component';
 import { GestionUsuariosComponent } from './gestion-usuarios/gestion-usuarios.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { ReviewComponent } from './review/review.component';
 
 // Define las rutas de la aplicación
 export const routes: Routes = [
@@ -23,6 +24,7 @@ export const routes: Routes = [
   { path: 'coleccion', component: ColeccionComponent, canActivate: [AuthGuard]},
   { path: 'gestion-usuarios', component: GestionUsuariosComponent, canActivate: [AuthGuard]},
   { path: 'nav-bar', component: NavBarComponent, canActivate: [AuthGuard]},
+  { path: 'review', component: ReviewComponent, canActivate: [AuthGuard]},
   { path: 'about', component: AboutComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' }

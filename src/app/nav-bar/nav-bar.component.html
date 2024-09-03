@@ -7,7 +7,7 @@
       <a *ngIf="isAdmin" (click)="goToCollectionManagement()">Gestión de Colección</a>
       <a *ngIf="!isAdmin" (click)="goToMyLoans()">Mis Préstamos</a>
       <a *ngIf="!isAdmin" (click)="goToUserProfile()">Perfil de Usuario</a>
-      <a *ngIf="!isAdmin" (click)="goToSocialInteraction()">Interacción Social</a>
+      <a *ngIf="!isAdmin" (click)="goToSocialInteraction()">Review</a>
       </nav>
       <div class="user-info">
         <span>{{ username }}</span>

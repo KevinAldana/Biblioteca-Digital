@@ -1,0 +1,36 @@
+<app-nav-bar></app-nav-bar>
+<div class="container">
+    <h2>Reseñas y Valoraciones</h2>
+    
+    <!-- Listado de Recursos Prestados -->
+    <div *ngFor="let recurso of recursosPrestados">
+      <div class="card my-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ recurso.titulo }}</h5>
+          <p class="card-text">Autor: {{ recurso.autor }}</p>
+          <p class="card-text">Género: {{ recurso.genero }}</p>
+          <p class="card-text">Fecha de préstamo: {{ recurso.fecha_prestamo }}</p>
+          <button class="btn btn-primary" (click)="seleccionarRecurso(recurso.id_recurso)">Calificar y Reseñar</button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Formulario para Nueva Reseña -->
+    <div class="card my-4" *ngIf="idRecursoSeleccionado">
+      <div class="card-body">
+        <h4 class="card-title">Dejar una Reseña para el Recurso Seleccionado</h4>
+        <div class="form-group">
+          <label for="comentario">Comentario:</label>
+          <textarea id="comentario" class="form-control" [(ngModel)]="nuevoComentario" rows="3"></textarea>
+        </div>
+        <div class="form-group mt-2">
+          <label for="calificacion">Calificación:</label>
+          <select id="calificacion" class="form-control" [(ngModel)]="calificacion">
+            <option *ngFor="let num of [1, 2, 3, 4, 5]" [value]="num">{{ num }}</option>
+          </select>
+        </div>
+        <button class="btn btn-primary mt-3" (click)="enviarReview()">Enviar Reseña</button>
+      </div>
+    </div>
+  </div>
+  

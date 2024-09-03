@@ -33,7 +33,7 @@ export class NavBarComponent implements OnInit {
   }
 
   goToSocialInteraction() {
-    this.router.navigate(['/interaccion-social']);
+    this.router.navigate(['/review']);
   }
   constructor(private authService: AuthService, private router: Router) {}
 
