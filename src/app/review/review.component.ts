@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { NgFor, NgIf } from '@angular/common';
+import { DatePipe, NgFor, NgIf } from '@angular/common';
 import Swal from 'sweetalert2';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { CommonModule } from '@angular/common';
@@ -12,11 +12,11 @@ import { AuthService } from '../auth.service';
   templateUrl: './review.component.html',
   standalone: true,
   styleUrls: ['./review.component.css'],
-  imports: [NgFor, NgIf, FormsModule, NavBarComponent]
+  imports: [NgFor, NgIf, FormsModule, NavBarComponent, DatePipe]
 })
 export class ReviewComponent implements OnInit {
   recursosPrestados: any[] = [];
-  usuarioId: string | null = '';  // Asegúrate de pasar este ID correctamente
+  usuarioId: string | null = '';
   nuevoComentario: string = '';
   calificacion: number = 0;
   idRecursoSeleccionado: number = 0;
@@ -24,12 +24,13 @@ export class ReviewComponent implements OnInit {
   constructor(private authService: AuthService, private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.cargarRecursosPrestados();
     this.usuarioId = this.authService.getId();
+    this.cargarRecursosPrestados();
   }
 
   cargarRecursosPrestados(): void {
-    this.http.get('http://localhost/biblioteca_digital/backend/Controlador/controlador.php?action=getRecursosPrestados')
+    const id = {usuarioId :this.usuarioId};
+    this.http.post('http://localhost/biblioteca_digital/backend/Controlador/controlador.php?action=getRecursosPrestados', id)
       .subscribe((data: any) => {
         this.recursosPrestados = data[0];
       });
@@ -48,8 +49,9 @@ export class ReviewComponent implements OnInit {
         calificacion: this.calificacion
       };
 
-      this.http.post('http://localhost/biblioteca_digital/backend/Controlador/controlador.php?action=crearReseña', Review)
+      this.http.post('http://localhost/biblioteca_digital/backend/Controlador/controlador.php?action=crearReview', Review)
         .subscribe((response: any) => {
+          console.log(response)
           if(response === 1) {
             Swal.fire({
               icon: 'success',
@@ -76,4 +78,9 @@ export class ReviewComponent implements OnInit {
       });
     }
   }
+  cerrarFormulario(): void {
+    this.idRecursoSeleccionado = 0;
+    this.nuevoComentario = '';
+    this.calificacion = 0;
+  }  
 }

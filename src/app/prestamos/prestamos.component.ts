@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
-import { NgFor, NgIf } from '@angular/common';
+import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { AuthService } from '../auth.service';
@@ -12,7 +12,7 @@ import { AuthService } from '../auth.service';
   templateUrl: './prestamos.component.html',
   standalone: true,
   styleUrls: ['./prestamos.component.css'],
-  imports: [NgFor, NgIf, NavBarComponent, CommonModule, FormsModule]
+  imports: [NgFor, NgIf, NavBarComponent, CommonModule, FormsModule, DatePipe]
 })
 export class PrestamosComponent implements OnInit {
   recursos: any[] = [];

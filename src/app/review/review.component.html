@@ -1,5 +1,6 @@
 <app-nav-bar></app-nav-bar>
-<div class="container">
+<div class="container mt-4
+">
     <h2>Reseñas y Valoraciones</h2>
     
     <!-- Listado de Recursos Prestados -->
@@ -9,7 +10,7 @@
           <h5 class="card-title">{{ recurso.titulo }}</h5>
           <p class="card-text">Autor: {{ recurso.autor }}</p>
           <p class="card-text">Género: {{ recurso.genero }}</p>
-          <p class="card-text">Fecha de préstamo: {{ recurso.fecha_prestamo }}</p>
+          <p class="card-text">Fecha de préstamo: {{ recurso.fecha_prestamo | date:'dd/MM/yyyy' }}</p>
           <button class="btn btn-primary" (click)="seleccionarRecurso(recurso.id_recurso)">Calificar y Reseñar</button>
         </div>
       </div>
@@ -18,7 +19,7 @@
     <!-- Formulario para Nueva Reseña -->
     <div class="card my-4" *ngIf="idRecursoSeleccionado">
       <div class="card-body">
-        <h4 class="card-title">Dejar una Reseña para el Recurso Seleccionado</h4>
+        <h4 class="card-title">Dejar Reseña</h4>
         <div class="form-group">
           <label for="comentario">Comentario:</label>
           <textarea id="comentario" class="form-control" [(ngModel)]="nuevoComentario" rows="3"></textarea>
@@ -30,7 +31,8 @@
           </select>
         </div>
         <button class="btn btn-primary mt-3" (click)="enviarReview()">Enviar Reseña</button>
+        <button class="btn btn-secondary mt-3 ms-2" (click)="cerrarFormulario()">Cancelar</button>
       </div>
     </div>
-  </div>
+
   

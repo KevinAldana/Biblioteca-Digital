@@ -1,17 +1,19 @@
 <div class="home-container">
-    <header>
-      <h1>Bienvenido a la Biblioteca Digital</h1>
-      <nav>
-      <a (click)="goToHome()">Inicio</a>
-      <a *ngIf="isAdmin" (click)="goToUserManagement()">Administración de Usuarios</a>
-      <a *ngIf="isAdmin" (click)="goToCollectionManagement()">Gestión de Colección</a>
-      <a *ngIf="!isAdmin" (click)="goToMyLoans()">Mis Préstamos</a>
-      <a *ngIf="!isAdmin" (click)="goToUserProfile()">Perfil de Usuario</a>
-      <a *ngIf="!isAdmin" (click)="goToSocialInteraction()">Review</a>
-      </nav>
-      <div class="user-info">
-        <span>{{ username }}</span>
-        <button (click)="logout()">Cerrar Sesión</button>
-      </div>
-    </header>
-  
+  <header class="text-center p-4 bg-dark text-white">
+    <h1>Bienvenido a la Biblioteca Digital</h1>
+    <nav class="navigation my-3">
+      <a class="text-white mx-3" (click)="goToHome()">Inicio</a>
+      <a class="text-white mx-3" *ngIf="isAdmin" (click)="goToUserManagement()">Administración de Usuarios</a>
+      <a class="text-white mx-3" *ngIf="isAdmin" (click)="goToCollectionManagement()">Gestión de Colección</a>
+      <a class="text-white mx-3" *ngIf="isAdmin" (click)="goToReporte()">Reportes e inventarios</a>
+      <a class="text-white mx-3" *ngIf="!isAdmin" (click)="goToMyLoans()">Mis Préstamos</a>
+      <a class="text-white mx-3" *ngIf="!isAdmin" (click)="goToUserProfile()">Perfil de Usuario</a>
+      <a class="text-white mx-3" *ngIf="!isAdmin" (click)="goToSocialInteraction()">Review</a>
+    </nav>
+    <div class="user-info text-end">
+      <span class="me-3">{{ username }}</span>
+      <button class="btn btn-danger mb-2" (click)="logout()">Cerrar Sesión</button>
+      <span class="user-role d-block ">Rol: {{ rol }}</span>
+    </div>
+  </header>
+</div>

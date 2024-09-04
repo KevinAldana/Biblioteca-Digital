@@ -5,6 +5,7 @@ import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { NgFor } from '@angular/common';
 import * as bootstrap from 'bootstrap';
 import Swal from 'sweetalert2';
+import { AboutComponent } from '../about/about.component';
 
 
 @Component({

@@ -1,5 +1,5 @@
 <app-nav-bar></app-nav-bar>
-<div class="container">
+<div class="container mt-4">
     <h2>Editar Perfil</h2>
     <form (ngSubmit)="guardarCambios()" #form="ngForm">
       <!-- Información Personal -->
@@ -33,7 +33,7 @@
         <textarea id="preferencias" class="form-control" [(ngModel)]="usuario.preferencias" name="preferencias" rows="4"></textarea>
       </div>
   
-      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Guardar Cambios</button>
+      <button type="submit" class="btn btn-primary mt-3" [disabled]="form.invalid">Guardar Cambios</button>
     </form>
   </div>
   

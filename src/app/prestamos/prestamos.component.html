@@ -35,13 +35,13 @@
   </div>
 
   <!-- Historial de Préstamos -->
-  <div class="mt-5">
+  <div class="mt-5 mb-3">
     <h3>Historial de Préstamos</h3>
-    <div *ngFor="let prestamo of Prestamos" class="card mb-3">
+    <div *ngFor="let prestamo of Prestamos" class="card mb-3 ">
       <div class="card-body">
         <h5 class="card-title">Recurso: {{ prestamo.titulo }}</h5>
-        <p class="card-text"><strong>Fecha de Solicitud:</strong> {{ prestamo.fecha_prestamo }}</p>
-        <p class="card-text"><strong>Fecha de Devolución:</strong> {{ prestamo.fecha_devolucion || 'Pendiente' }}</p>
+        <p class="card-text"><strong>Fecha de Solicitud:</strong> {{ prestamo.fecha_prestamo | date:'dd/MM/yyyy' }}</p>
+        <p class="card-text"><strong>Fecha de Devolución:</strong> {{ !prestamo.fecha_devolucion ? 'Pendiente por' : prestamo.fecha_devolucion  | date:'dd/MM/yyyy'}}</p>
         <button class="btn btn-danger" (click)="returnResource(prestamo)" [disabled]="prestamo.fechaDevolucion">Devolver Recurso</button>
       </div>
     </div>

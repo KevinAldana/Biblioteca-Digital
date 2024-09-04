@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
+import { AboutComponent } from '../about/about.component';
 import * as bootstrap from 'bootstrap';
 import Swal from 'sweetalert2';
 @Component({
