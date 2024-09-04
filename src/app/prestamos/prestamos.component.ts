@@ -41,7 +41,6 @@ export class PrestamosComponent implements OnInit {
   loadPrestamos(): void {
     this.http.get<any[]>('http://localhost/biblioteca_digital/backend/Controlador/controlador.php?action=getPrestamos')
       .subscribe(data => {
-        console.log(data)
         if (data.length > 0) {
           this.Prestamos = data[0]; // Asignar directamente el array de préstamos
         } else {

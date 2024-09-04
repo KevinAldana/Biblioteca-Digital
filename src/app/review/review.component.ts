@@ -51,7 +51,6 @@ export class ReviewComponent implements OnInit {
 
       this.http.post('http://localhost/biblioteca_digital/backend/Controlador/controlador.php?action=crearReview', Review)
         .subscribe((response: any) => {
-          console.log(response)
           if(response === 1) {
             Swal.fire({
               icon: 'success',

@@ -1,21 +1,22 @@
-// src/app/jwt.interceptor.ts
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { catchError, Observable, throwError } from 'rxjs';
+import { AuthService } from './auth.service'; // Asegúrate de tener este servicio implementado
 
 @Injectable()
-export class JwtInterceptor implements HttpInterceptor {
+export class AuthInterceptor implements HttpInterceptor {
+  constructor(private authService: AuthService, private router: Router) {}
+
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem('token');
-    if (token) {
-        const cloned = req.clone({
-            setHeaders: {
-              Authorization: `Bearer ${token}`
-            }
-          });
-          return next.handle(cloned);
-    } else {
-        return next.handle(req);
-    }
+    return next.handle(req).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          this.authService.logout(); // Limpia el token y cualquier otra información de sesión
+          this.router.navigate(['/login']); // Redirige al login
+        }
+        return throwError(error);
+      })
+    );
   }
 }

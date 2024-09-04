@@ -4,13 +4,13 @@ import { provideRouter } from '@angular/router';
 import { provideHttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
-import { JwtInterceptor } from './app/jwt.interceptor';
+import { AuthInterceptor } from './app/jwt.interceptor';
 import { AuthGuard } from './app/auth.guard';
 
 const providers = [
   provideRouter(routes),
   provideHttpClient(),
-  { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   AuthGuard
 ];
 
